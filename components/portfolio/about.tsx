@@ -42,14 +42,14 @@ export function About({ skills }: AboutProps) {
             <div className="aspect-[3/4] bg-secondary relative overflow-hidden">
               <div 
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url('/images/portrait.jpg')` }}
+                style={{ backgroundImage: `url('/profilepic.jpeg')` }}
               />
               {/* Fallback */}
-              <div className="absolute inset-0 flex items-center justify-center">
+              {/* <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center">
-                  <span className="font-sans text-3xl text-muted-foreground">AM</span>
+                  <span className="font-sans text-3xl text-muted-foreground"></span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
