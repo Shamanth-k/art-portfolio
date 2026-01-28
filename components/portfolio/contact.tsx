@@ -62,7 +62,7 @@ export function Contact() {
         {/* Social links */}
         <div className="flex justify-center gap-8">
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/local._visuals?igsh=aGJxNjR1Zm95a296"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col items-center gap-2"
@@ -74,7 +74,7 @@ export function Contact() {
             </span>
           </a>
           
-          <a
+          {/* <a
             href="https://behance.net"
             target="_blank"
             rel="noopener noreferrer"
@@ -104,7 +104,7 @@ export function Contact() {
             <span className="font-mono text-xs text-muted-foreground group-hover:text-foreground transition-colors">
               YouTube
             </span>
-          </a>
+          </a> */}
         </div>
       </motion.div>
     </section>
