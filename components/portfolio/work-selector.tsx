@@ -24,7 +24,7 @@ export function WorkSelector({ activeCategory, onCategoryChange }: WorkSelectorP
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="flex flex-wrap justify-center gap-8 md:gap-16"
+        className="flex flex-wrap justify-center gap-x-6 gap-y-5 md:gap-16"
       >
         {categories.map((category, index) => (
           <motion.button
@@ -37,7 +37,7 @@ export function WorkSelector({ activeCategory, onCategoryChange }: WorkSelectorP
             className="group relative"
           >
             <span
-              className={`font-sans text-2xl md:text-4xl lg:text-5xl font-medium tracking-tight transition-colors duration-300 ${
+              className={`font-sans text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium tracking-tight transition-colors duration-300 ${
                 activeCategory === category.id
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"

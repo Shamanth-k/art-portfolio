@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Instagram, Youtube, Copy, Check } from "lucide-react"
+import { Instagram, Copy, Check } from "lucide-react"
 
 export function Contact() {
   const [copied, setCopied] = useState(false)
@@ -39,9 +39,9 @@ export function Contact() {
         <div className="mb-16">
           <button
             onClick={copyEmail}
-            className="group inline-flex items-center gap-3 font-mono text-lg md:text-xl text-foreground hover:text-accent transition-colors"
+            className="group inline-flex max-w-full items-center gap-2 md:gap-3 font-mono text-sm sm:text-base md:text-xl text-foreground hover:text-accent transition-colors"
           >
-            <span>{email}</span>
+            <span className="break-all">{email}</span>
             {copied ? (
               <Check className="w-5 h-5 text-accent" />
             ) : (

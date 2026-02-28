@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import type { Category, WorkItem } from "@/lib/portfolio-data"
@@ -18,15 +18,20 @@ export function Gallery({ works, activeCategory }: GalleryProps) {
     ? works
     : works.filter(work => work.category === activeCategory)
 
+  useEffect(() => {
+    document.body.style.overflow = selectedWork ? "hidden" : "auto"
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [selectedWork])
+
   const openModal = (work: WorkItem) => {
     setSelectedWork(work)
     setCurrentImageIndex(0)
-    document.body.style.overflow = "hidden"
   }
 
   const closeModal = () => {
     setSelectedWork(null)
-    document.body.style.overflow = "auto"
   }
 
   const nextImage = () => {
@@ -101,15 +106,15 @@ export function Gallery({ works, activeCategory }: GalleryProps) {
             className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center"
             onClick={closeModal}
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="relative w-full max-w-6xl mx-6 flex items-center justify-center min-h-[60vh]"
-              onClick={(e) => e.stopPropagation()}
-              tabIndex={-1}
-            >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            className="relative w-full max-w-6xl mx-4 md:mx-6 flex items-center justify-center min-h-[60vh] max-h-[92vh] overflow-y-auto py-12 md:py-0"
+            onClick={(e) => e.stopPropagation()}
+            tabIndex={-1}
+          >
               {/* Close button */}
               <button
                 onClick={closeModal}
@@ -119,10 +124,10 @@ export function Gallery({ works, activeCategory }: GalleryProps) {
                 <X className="w-7 h-7" />
               </button>
 
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <div className="grid w-full grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 {/* Fixed-size media container - dimensions based on category type */}
                 <div className="relative flex items-center justify-center">
-                  <div className={`${selectedWork.category === 'design' || selectedWork.category === 'photography' ? 'w-[400px] h-[400px]' : 'w-[360px] h-[540px]'} bg-black overflow-hidden rounded-lg flex items-center justify-center`}>
+                  <div className={`${selectedWork.category === 'design' || selectedWork.category === 'photography' ? 'w-full max-w-[400px] aspect-square' : 'w-full max-w-[360px] aspect-[2/3]'} bg-black overflow-hidden rounded-lg flex items-center justify-center`}>
                     {selectedWork.images[currentImageIndex].endsWith('.mp4') ? (
                       <video
                         src={selectedWork.images[currentImageIndex]}
@@ -147,14 +152,14 @@ export function Gallery({ works, activeCategory }: GalleryProps) {
                     <>
                       <button
                         onClick={prevImage}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 p-2 bg-background/50 hover:bg-background/80 transition-colors rounded-full"
+                        className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-1/2 p-2 bg-background/50 hover:bg-background/80 transition-colors rounded-full"
                         aria-label="Previous image"
                       >
                         <ChevronLeft className="w-5 h-5" />
                       </button>
                       <button
                         onClick={nextImage}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 p-2 bg-background/50 hover:bg-background/80 transition-colors rounded-full"
+                        className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-1/2 p-2 bg-background/50 hover:bg-background/80 transition-colors rounded-full"
                         aria-label="Next image"
                       >
                         <ChevronRight className="w-5 h-5" />
